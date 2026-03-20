@@ -67,7 +67,24 @@ local mcm_sprint_delay = 0.2
 local mcm_alt_aim_allowed = false
 
 -- LMG Section Table
-local lmg_section_names = {"wpn_rpk74_16_drum", "wpn_m249", "wpn_rpd", "wpn_pkm_siber", "wpn_pkp_siber", "wpn_pkm_zenit_siber", "wpn_pkp_zenit_siber"}
+local lmg_section_names = {
+	"wpn_dp27",
+	"wpn_dp28",
+	"wpn_m134",
+	"wpn_m240",
+	"wpn_m249",
+	"wpn_mg3",
+	"wpn_mg42",
+	"wpn_mk48",
+	"wpn_rpd",
+	"wpn_rpk_drum",
+	"wpn_rpk16",
+	"wpn_rpk74_16_drum",
+	"wpn_pkm_siber",
+	"wpn_pkp_siber",
+	"wpn_pkm_zenit_siber",
+	"wpn_pkp_zenit_siber"
+}
 local mcm_lmg_separation = true
 local mcm_lmg_factor_speed = 1
 local mcm_lmg_factor = 1
