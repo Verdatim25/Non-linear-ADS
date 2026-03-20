@@ -1,0 +1,397 @@
+-- Made by Verdatim
+
+--[[ Ideas:
+Add specfiic anim and strength to BHS low arm health. Maybe you could use zzz_player_injuries.health.leftarm and zzz_player_injuries.health.rightarm ?
+Finish and flesh out the Haruka Strength Skill idea, lower strength level means higher power / lower speed / different anm
+
+]]
+
+-- Math functions
+local math_max = math.max
+local math_min = math.min
+
+local current_mode = 0
+
+-- MCM VALUES (CHANGE DEFAULTS HERE IF NOT USING MCM)
+local mcm_speed_in_multiplier = 0.5
+local pistol_allowed = false
+local DEBUG = false
+local mcm_speed_out_multiplier = 0.5
+local mcm_power_in = 1
+local mcm_power_out = 1
+local play_anim = true
+local mcm_strength_affect = false
+local mcm_arm_health_affect = false
+local mcm_arm_health_factor = 1
+local mcm_strength_power_factor = 1
+local mcm_strength_speed_factor = 1
+
+local mcm_gl_anim = false
+
+-- Weapon modifier MCMs
+-- Power multipliers
+local mcm_pistol_factor = 1
+local mcm_smg_factor = 1
+local mcm_shotgun_factor = 1
+local mcm_rifle_factor = 1
+local mcm_sniper_factor = 1
+-- Speed Multipliers
+local mcm_pistol_factor_speed  = 1
+local mcm_smg_factor_speed     = 1
+local mcm_shotgun_factor_speed = 1
+local mcm_rifle_factor_speed   = 1
+local mcm_sniper_factor_speed  = 1
+
+-- Weight Modifier
+local mcm_weight_affect = false
+local mcm_weight_threshold = 5
+local mcm_weight_factor = 1
+	  
+local mcm_anim_choice_1
+local mcm_anim_choice_2
+
+-- Handling Values
+local mcm_handling_affect = true
+local mcm_handling_factor = 10
+local mcm_max_handling_multiplier = 0
+local mcm_handling_exponent = 7
+local mcm_handling_offset = 0.3
+
+-- Activate on sprint ONLY
+local mcm_toggle_anim_on_sprint = false
+local mcm_sprint_delay = 0.2
+
+ 
+function printdbg(text)
+	if DEBUG then
+		printf("[EFT_ADS]" .. text)
+	end
+end
+
+function get_mcm_values()														-- OH GOD HOW MANY OF THEM ARE THERE
+	mcm_speed_in_multiplier = ui_mcm.get("EFT_ADS/Speed_Mulitplier_in") or mcm_speed_in_multiplier
+	mcm_speed_out_multiplier = ui_mcm.get("EFT_ADS/Speed_Mulitplier_out") or mcm_speed_out_multiplier
+	pistol_allowed = ui_mcm.get("EFT_ADS/Pistol_Allowed") 
+	DEBUG = ui_mcm.get("EFT_ADS/Debug")
+	mcm_power_in = ui_mcm.get("EFT_ADS/Speed_Mulitplier_in_power") or mcm_power_in
+	mcm_power_out = ui_mcm.get("EFT_ADS/Speed_Mulitplier_out_power") or mcm_power_out
+	play_anim = ui_mcm.get("EFT_ADS/Play_anim") 
+	mcm_strength_affect = ui_mcm.get("EFT_ADS/Strength_factor") 
+	mcm_arm_health_affect = ui_mcm.get("EFT_ADS/Arm_Health_factor") 
+	mcm_arm_health_factor = ui_mcm.get("EFT_ADS/Arm_Health_factor_factor") or mcm_arm_health_factor
+    mcm_strength_power_factor   = ui_mcm.get("EFT_ADS/Strength_power_factor_factor") or mcm_strength_power_factor
+	mcm_strength_speed_factor   = ui_mcm.get("EFT_ADS/Strength_speed_factor_factor") or mcm_strength_speed_factor
+	
+	-- Power Factors
+	
+	mcm_pistol_factor = ui_mcm.get("EFT_ADS/Speed_Mulitplier_in_power_pistol") 	or	mcm_pistol_factor
+	mcm_smg_factor = ui_mcm.get("EFT_ADS/Speed_Mulitplier_in_power_smg")         or   mcm_smg_factor
+	mcm_shotgun_factor = ui_mcm.get("EFT_ADS/Speed_Mulitplier_in_power_shotgun") or   mcm_shotgun_factor
+	mcm_rifle_factor = ui_mcm.get("EFT_ADS/Speed_Mulitplier_in_power_rifle")  or      mcm_rifle_factor 
+	mcm_sniper_factor = ui_mcm.get("EFT_ADS/Speed_Mulitplier_in_power_sniper")   or   mcm_sniper_factor
+	
+	-- Speed Factors
+	 mcm_pistol_factor_speed  = ui_mcm.get("EFT_ADS/Speed_Mulitplier_in_speed_pistol")  or mcm_pistol_factor_speed
+	 mcm_smg_factor_speed     = ui_mcm.get("EFT_ADS/Speed_Mulitplier_in_speed_smg")    or mcm_smg_factor_speed
+	 mcm_shotgun_factor_speed = ui_mcm.get("EFT_ADS/Speed_Mulitplier_in_speed_shotgun") or mcm_shotgun_factor_speed 
+	 mcm_rifle_factor_speed   = ui_mcm.get("EFT_ADS/Speed_Mulitplier_in_speed_rifle") or  mcm_rifle_factor_speed
+	 mcm_sniper_factor_speed  = ui_mcm.get("EFT_ADS/Speed_Mulitplier_in_speed_sniper")  or mcm_sniper_factor_speed
+	 
+	 -- Weight Modifiers
+	mcm_weight_affect = ui_mcm.get("EFT_ADS/weight_affect")       
+	mcm_weight_threshold = ui_mcm.get("EFT_ADS/weight_threshold") or mcm_weight_threshold 
+    mcm_weight_factor = ui_mcm.get("EFT_ADS/weight_factor")       or mcm_weight_factor
+	
+	-- GL anim
+	mcm_gl_anim = ui_mcm.get("EFT_ADS/gl_anim")
+
+	-- Handling Factor
+	mcm_handling_affect = ui_mcm.get("EFT_ADS/handling_affect")				
+	mcm_handling_factor = ui_mcm.get("EFT_ADS/handling_factor")             or mcm_handling_factor
+	mcm_max_handling_multiplier = ui_mcm.get("EFT_ADS/max_handling_factor") or mcm_max_handling_multiplier
+	mcm_handling_exponent = ui_mcm.get("EFT_ADS/handling_exponent")         or mcm_handling_exponent
+	mcm_handling_offset = ui_mcm.get("EFT_ADS/handling_offset")             or mcm_handling_offset
+	
+	-- Activate On Sprint Only
+	mcm_toggle_anim_on_sprint = ui_mcm.get("EFT_ADS/anim_on_sprint")
+	mcm_sprint_delay = ui_mcm.get("EFT_ADS/anim_on_sprint_delay")
+end
+
+function ver_play_hud_anim_in(wpn)
+	sec = wpn:section()
+	printdbg("play_anim is set to " .. tostring(play_anim))
+	if play_anim and current_mode ~= 2 then
+		printdbg("current mode is " .. current_mode)
+		printdbg("ads_bs in tried to activate")
+		printdbg("wpn section is " .. sec)
+		local kind = ini_sys:r_string_ex(sec,"kind") -- r_string_ex reads a line from the ltx with the second argument as the parameter it will read
+		printdbg("wpn kind is " .. kind)
+		if kind == "w_pistol" and not pistol_allowed then
+			printdbg("Pistol detected, not playing animation")
+			return
+		else
+			ver_strength_level = strength_anim_power() or 1
+			ver_arm_health_total = LoadHealthStatus()
+			printdbg("total arm health is " .. ver_arm_health_total)
+			local zoom_rotate_time = wpn:cast_Weapon():GetZoomRotateTime() or ui_wpn_params.read_float(sec, "", "zoom_rotate_time") or 0.25
+			local speed_adjustment = 0.733 / zoom_rotate_time
+			local final_speed_adjustment = speed_adjustment * find_speed_factor_in(wpn, ver_strength_level, ver_arm_health_total, kind)
+			final_speed_adjustment = math_max(0.9, final_speed_adjustment)
+			local power = find_power_factor_in(wpn, ver_strength_level, ver_arm_health_total, kind)
+				if power == 9999 then
+					final_speed_adjustment = final_speed_adjustment * 0.35
+					printdbg("Speed adjustment for broken arm is " .. final_speed_adjustment)
+					ver_arm_health_total = math_max(1, ver_arm_health_total)
+					power_temp = 1 + (math.random(0, (10 * (4 / ver_arm_health_total)))/40)
+					printdbg("power_temp is " .. power_temp)
+					game.play_hud_anm("ver\\ver_hands_ads_eft_bs_broken.anm", 2, final_speed_adjustment, power_temp, false, false)
+					printdbg("arm is broken! playing broken anim")
+				return end
+			printdbg("Final speed adjustment is " .. final_speed_adjustment)
+			printdbg("Final power adjustment is " .. power)
+			game.play_hud_anm("ver\\ver_hands_ads_eft_bs.anm", 2, final_speed_adjustment, power, false, false)
+		end
+	end
+end
+
+function ver_play_hud_anim_out(wpn)
+	if play_anim then
+		printdbg("ads_bs out tried to activate")
+		sec = wpn:section()
+		local kind = ini_sys:r_string_ex(sec,"kind") -- r_string_ex reads a line from the ltx with the second argument as the parameter it will read
+		printdbg("wpn kind is " .. kind)
+		if kind == "w_pistol" and not pistol_allowed then
+			printdbg("Pistol detected, not playing animation")
+			return
+		else
+			local zoom_rotate_time = ui_wpn_params.read_float(sec, "", "zoom_rotate_time")
+			local speed_adjustment = 0.733 / zoom_rotate_time
+			local final_speed_adjustment = speed_adjustment * mcm_speed_out_multiplier
+			printdbg("Final speed adjustment is " .. final_speed_adjustment)
+			game.play_hud_anm("ver\\ver_hands_ads_eft_bs.anm", 2, final_speed_adjustment, mcm_power_out, false, false)
+		end
+	end
+end
+
+-- Power and Speed finders
+
+function find_power_factor_in(wpn, skill, health, kind)
+	local health_factor = 10 / health
+	local power_in = mcm_power_in
+	exo_factor = find_exo()
+	skill = skill or 1
+	skill = math_min(((7 * exo_factor) + skill), 30)
+	printdbg("final skill level is " .. skill)
+	if mcm_strength_affect then
+		power_in = power_in * (mcm_strength_power_factor/(mcm_strength_power_factor + (skill / 30)))														-- skill is out of 30 levels
+	end                                   
+	if mcm_arm_health_affect and health_factor ~= 1 then
+		if health < 5 then
+			return 9999
+		end
+		health_factor = math_min(1.5, health_factor)
+		power_in = power_in * health_factor * mcm_arm_health_factor
+	end
+	if mcm_handling_affect then
+		local handling = find_handling(wpn) 											-- handling stat is 0-1
+		local inverse = 1 / mcm_handling_factor
+		local handling_factor = (inverse /(inverse + (handling^mcm_handling_exponent))) + mcm_handling_offset -- 
+		handling_factor = math_max(mcm_max_handling_multiplier, handling_factor)
+		printdbg("handling_factor is " .. handling_factor)
+		power_in = power_in * handling_factor
+	end	
+	if kind == "w_pistol" then
+		power_in = power_in * mcm_pistol_factor
+	end
+	if kind == "w_smg" then
+		power_in = power_in * mcm_smg_factor
+	end
+	if kind == "w_shotgun" then
+		power_in = power_in * mcm_shotgun_factor
+	end
+	if kind == "w_rifle" then
+		power_in = power_in * mcm_rifle_factor
+	end
+	if kind == "w_sniper" then
+		power_in = power_in * mcm_sniper_factor
+	end
+	return power_in
+end	
+
+function find_speed_factor_in(wpn, skill, health, kind)
+	health = math_max(1, health)
+	local health_factor = 10 / health 						-- 1 < health_factor < 10
+	local speed_in = mcm_speed_in_multiplier
+	exo_factor = find_exo()
+	skill = skill or 1
+	skill = math_min(((7 * exo_factor) + skill), 30)
+	if mcm_strength_affect then
+		speed_in = speed_in * ((mcm_strength_speed_factor + (skill / 30))/mcm_strength_speed_factor)														-- skill is out of 30 levels
+	end                              
+	if mcm_arm_health_affect and health_factor ~= 1 then
+		if health < 5 then
+			printdbg("arm broken, returning 1")
+			return 1
+		end
+		speed_in = speed_in * (1 / (health_factor)) * (1 / mcm_arm_health_factor)		
+	end
+	if mcm_weight_affect then
+		local weight = wpn:cast_Weapon():Weight()
+		if weight > mcm_weight_threshold then
+			speed_in = speed_in * ((mcm_weight_threshold / weight) ^ mcm_weight_factor)
+		end
+	end
+	if kind == "w_pistol" then
+		speed_in = speed_in * mcm_pistol_factor_speed
+	end
+	if kind == "w_smg" then
+		speed_in = speed_in * mcm_smg_factor_speed
+	end
+	if kind == "w_shotgun" then
+		speed_in = speed_in * mcm_shotgun_factor_speed
+	end
+	if kind == "w_rifle" then
+		speed_in = speed_in * mcm_rifle_factor_speed
+	end
+	if kind == "w_sniper" then
+		speed_in = speed_in * mcm_sniper_factor_speed
+	end
+	return speed_in
+end	
+
+function on_game_start()
+	RegisterScriptCallback("actor_on_weapon_zoom_in", ver_play_hud_anim_in)
+	RegisterScriptCallback("actor_on_weapon_zoom_out", ver_play_hud_anim_out)
+	--RegisterScriptCallback("actor_on_hud_animation_play", dump_table)
+	RegisterScriptCallback("on_option_change", get_mcm_values)
+	RegisterScriptCallback("actor_on_first_update", get_mcm_values)
+	--GL prevention bs
+	RegisterScriptCallback("actor_on_hud_animation_play", actor_on_hud_animation_play)
+	
+	RegisterScriptCallback("actor_on_update", actor_on_update)
+
+end
+
+local sprint_temp = false
+function actor_on_update()
+	if not mcm_toggle_anim_on_sprint then
+		return
+	else
+		if not sprint_temp then 
+			play_anim = false
+		end
+		if IsMoveState('mcSprint') and not sprint_temp then
+			play_anim = true
+			CreateTimeEvent("EFT_ADS", "disable_play_anim", mcm_sprint_delay, disable_play_anim)
+			printdbg("play_anim set to true!")
+			sprint_temp = true
+		end
+		if IsMoveState('mcSprint') and sprint_temp then
+			ResetTimeEvent("EFT_ADS", "disable_play_anim", mcm_sprint_delay)
+		end
+	end
+end
+
+function disable_play_anim()
+	play_anim = false
+	sprint_temp = false
+	printdbg("play_anim set back to false!")
+	return true
+end
+
+-- exo finder
+function find_exo()
+exo_reduction = 0
+        
+	if item_exo_device then
+		if item_exo_device.is_wearing_exo() and item_exo_device.exo_charged() then
+			exo_reduction = 1
+		end
+	end
+	return exo_reduction
+end		
+		
+-- Handling Finder
+function find_handling(wpn)
+	local wpn_section = wpn:section()
+	local handling = utils_ui.prop_handling(wpn, wpn_section)
+	printdbg("Handling found! Handling is " .. handling)
+	return handling
+end
+-- Script to disable anim on GL mode (okay actually way more complicated than i thought)
+
+function actor_on_hud_animation_play(anim_table, wpn) -- thank you to Lucy from 4 years ago!!
+	dump_table(anim_table, wpn)
+	anim_name = anim_table.anm_name
+	if not mcm_gl_anim then
+		if anim_name == "anm_show_g" then
+			current_mode = 2
+		end
+		if anim_name == "anm_show" or anim_name == "anm_show_w_gl" then
+			current_mode = 0
+		end
+		if anim_name == "anm_switch_g" then
+			current_mode = 2
+		end
+		if anim_name == "anm_switch" then
+			current_mode = 0
+		end
+	else current_mode = 0
+	end
+end
+
+-- Test script for strength affecting power
+
+function strength_anim_power()
+	local strength_level = 1
+	if haru_skills then
+		if haru_skills.skills_levels.strength.current_level then
+		strength_level = haru_skills.skills_levels.strength.current_level
+	end
+		printdbg("strength level is " .. strength_level)
+		return strength_level
+	else return 1
+	end
+end
+
+function dump_table(anim_table, wpn)
+	--printdbg(dump(anim_table))
+	--[[if haru_skills.skills_levels and type(haru_skills.skills_levels) == "table" then
+		printdbg(dump(haru_skills.skills_levels))
+	else
+	printdbg("haru skills type is " .. type(haru_skills.skills_levels))
+	end
+	if haru_skills.skills_levels.strength.current_level then
+		printdbg("strength skill is " .. haru_skills.skills_levels.strength.current_level)
+	end]]
+end
+	
+function dump(o)
+   if type(o) == 'table' then
+      local s = '{ '
+      for k,v in pairs(o) do
+         if type(k) ~= 'number' then k = '"'..k..'"' end
+         s = s .. '['..k..'] = ' .. dump(v) .. ','
+      end
+      return s .. '} '
+   else
+      return tostring(o)
+   end
+end
+
+-- Test script to return arm health
+local health = {}
+local maxhp = {}
+maxhp.rightarm = 5
+maxhp.leeftarm = 5
+function LoadHealthStatus()
+	health.rightarm=utils_obj.load_var(db.actor,"health.rightarm") or maxhp.rightarm
+	health.leftarm=utils_obj.load_var(db.actor,"health.leftarm") or maxhp.leftarm
+	if health.leftarm and health.rightarm then
+		Total_arm_health = health.leftarm + health.rightarm
+		return Total_arm_health
+	else
+		Total_arm_health = 10
+		return Total_arm_health
+	end
+end

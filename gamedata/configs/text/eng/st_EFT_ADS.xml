@@ -1,0 +1,181 @@
+<string_table>
+    <!-- MCM -->
+    <string id="ui_mcm_menu_EFT_ADS">
+        <text>Non-Linear ADS</text>
+    </string>
+    <string id="ui_mcm_menu_EFT_ADS_Title">
+        <text>Non-linear ADS animation</text>
+    </string>
+	<string id="ui_mcm_menu_EFT_ADS_weapon_mod">
+        <text>Weapon Class Specific Power Adjustment</text>
+    </string>
+	<string id="ui_mcm_menu_EFT_ADS_weapon_speed">
+        <text>Weapon Class Specific Speed Adjustment</text>
+    </string>
+	<string id="ui_mcm_menu_EFT_ADS_anim_on_sprint">
+        <text>Anim play only on sprint</text>
+    </string>
+	
+	<string id="ui_mcm_EFT_ADS_anim_on_sprint">
+        <text>Enable Animation Only On Sprint</text>
+    </string>
+	<string id="ui_mcm_EFT_ADS_anim_on_sprint_delay">
+        <text>Disable Anim Delay After Sprint</text>
+    </string>
+	
+	<string id="ui_mcm_menu_EFT_ADS_arm_health">
+        <text>Arm Health Affects Anim Power</text>
+    </string>
+	
+	<string id="ui_mcm_menu_EFT_ADS_weapon_handling">
+        <text>Weapon Handling Affects Power</text>
+    </string>
+	<string id="ui_mcm_EFT_ADS_handling_affect">
+        <text>Handling Affects Anim Power</text>
+    </string>
+	<string id="ui_mcm_EFT_ADS_handling_factor">
+        <text>Handling Factor On Power</text>
+    </string>
+	<string id="ui_mcm_EFT_ADS_handling_factor_desc">
+        <text>Changes how much handling affects the power, higher means a more pronounced effect. At 4, 100% handling gives 0.2 multiplier, at 1, 100% handling gives 0.5 multiplier. The formula is (factor/(factor + (handling/100)^handling_exponent)) + handling_offset.	</text>
+    </string>
+	<string id="ui_mcm_EFT_ADS_max_handling_factor">
+        <text>Max Handling Multiplier</text>
+    </string>
+	<string id="ui_mcm_EFT_ADS_handling_exponent">
+        <text>Handling Exponent</text>
+    </string>
+	<string id="ui_mcm_EFT_ADS_handling_exponent_desc">
+        <text>Changes the exponent on handling that is used in the formula, for higher values, it means a sharper drop to multiplier. Formula is (factor/(factor + (handling/100)^handling_exponent)) + handling_offset.  </text>
+    </string>
+	<string id="ui_mcm_EFT_ADS_handling_offset">
+        <text>Handling Offset</text>
+    </string>
+	
+	<string id="ui_mcm_menu_EFT_ADS_weapon_weight">
+        <text>Weapon Weight Affects Speed</text>
+    </string>
+	<string id="ui_mcm_EFT_ADS_weight_affect">
+        <text>Weight Affects Anim Speed</text>
+    </string>
+	<string id="ui_mcm_EFT_ADS_weight_factor">
+        <text>Weight Factor On Speed</text>
+    </string>
+	<string id="ui_mcm_EFT_ADS_weight_threshold">
+        <text>Weight Threshold For Factor</text>
+    </string>
+	
+	<string id="ui_mcm_EFT_ADS_Play_anim">
+        <text>Play animation</text>
+    </string>
+	<string id="ui_mcm_EFT_ADS_Play_anim_desc">
+        <text>Will disable or enable the animation from playing at all</text>
+    </string>
+	<string id="ui_mcm_EFT_ADS_Speed_Mulitplier_in">
+        <text>Speed Multiplier ADS</text>
+    </string>
+	<string id="ui_mcm_EFT_ADS_Speed_Mulitplier_in_desc">
+        <text>Speed mulitplier on the extra ADS in animation, lower means slower, higher means faster</text>
+    </string>
+	<string id="ui_mcm_EFT_ADS_Speed_Mulitplier_in_power">
+        <text>Power multiplier ADS</text>
+    </string>
+	<string id="ui_mcm_EFT_ADS_Speed_Mulitplier_in_power_desc">
+        <text>Power multiplier on the ads in animation, higher means more noticeable, lower means less noticeable</text>
+    </string>
+	<string id="ui_mcm_EFT_ADS_Speed_Mulitplier_out">
+        <text>Speed Multiplier un-ADS</text>
+    </string>
+	<string id="ui_mcm_EFT_ADS_Speed_Mulitplier_out_desc">
+        <text>Speed mulitplier on the extra ADS out animation, lower means slower, higher means faster</text>
+    </string>
+	<string id="ui_mcm_EFT_ADS_Speed_Mulitplier_out_power">
+        <text>Power multiplier un-ADS</text>
+    </string>
+	<string id="ui_mcm_EFT_ADS_Speed_Mulitplier_out_power_desc">
+        <text>Power multiplier on the ads out animation, higher means more noticeable, lower means less noticeable</text>
+    </string>
+	
+	<string id="ui_mcm_EFT_ADS_Debug">
+        <text>Debug logging</text>
+    </string>
+	<string id="ui_mcm_EFT_ADS_Debug_desc">
+        <text>Prints extra debugging information into the log</text>
+    </string>
+	
+	<string id="ui_mcm_EFT_ADS_gl_anim">
+        <text>Enable Animation For GL</text>
+    </string>
+	<string id="ui_mcm_EFT_ADS_gl_anim_desc">
+        <text>Decides whether the aiming animation will play for Grenade Launchers.</text>
+    </string>
+	
+	<string id="ui_mcm_EFT_ADS_Pistol_Allowed">
+        <text>Play Animation For Pistol</text>
+    </string>
+	<string id="ui_mcm_EFT_ADS_Pistol_Allowed_desc">
+        <text>Decides whether the animation will play on pistols</text>
+    </string>
+	<string id="ui_mcm_EFT_ADS_Strength_factor">
+        <text>Strength Skill affects power of anim</text>
+    </string>
+	<string id="ui_mcm_EFT_ADS_Strength_factor_desc">
+        <text>Decides whether the animation power will be influenced by Haruka's skill strength factor</text>
+    </string>
+	<string id="ui_mcm_EFT_ADS_Arm_Health_factor">
+        <text>Arm health affects power of anim</text>
+    </string>
+	<string id="ui_mcm_EFT_ADS_Arm_Health_factor_desc">
+        <text>Decides whether the animation will be influenced by BHS arm health</text>
+    </string>
+	<string id="ui_mcm_EFT_ADS_Arm_Health_factor_factor">
+        <text>Arm health power factor</text>
+    </string>
+	<string id="ui_mcm_EFT_ADS_Arm_Health_factor_factor_desc">
+        <text>Configures how much the BHS arm health will affect anim power (strength)</text>
+    </string>
+	<string id="ui_mcm_EFT_ADS_Strength_power_factor_factor">
+        <text>Strength skill power factor</text>
+    </string>
+	<string id="ui_mcm_EFT_ADS_Strength_power_factor_factor_desc">
+        <text>Configures how much the strength skill will affect anim power (strength)</text>
+    </string>
+	<string id="ui_mcm_EFT_ADS_Strength_speed_factor_factor">
+        <text>Strength skill speed factor</text>
+    </string>
+	<string id="ui_mcm_EFT_ADS_Strength_speed_factor_factor_desc">
+        <text>Configures how much the strength skill will affect anim speed</text>
+    </string>
+	
+	
+	<string id="ui_mcm_EFT_ADS_Speed_Mulitplier_in_power_pistol">
+        <text>Pistol Power Factor</text>
+    </string>
+	<string id="ui_mcm_EFT_ADS_Speed_Mulitplier_in_power_smg">
+        <text>SMG Power Factor</text>
+    </string>
+	<string id="ui_mcm_EFT_ADS_Speed_Mulitplier_in_power_shotgun">
+        <text>Shotgun Power Factor</text>
+    </string>
+	<string id="ui_mcm_EFT_ADS_Speed_Mulitplier_in_power_rifle">
+        <text>Rifle Power Factor</text>
+    </string>
+	<string id="ui_mcm_EFT_ADS_Speed_Mulitplier_in_power_sniper">
+        <text>Sniper power Factor</text>
+    </string>
+	<string id="ui_mcm_EFT_ADS_Speed_Mulitplier_in_speed_pistol">
+        <text>Pistol speed Factor</text>
+    </string>
+	<string id="ui_mcm_EFT_ADS_Speed_Mulitplier_in_speed_smg">
+        <text>SMG speed Factor</text>
+    </string>
+	<string id="ui_mcm_EFT_ADS_Speed_Mulitplier_in_speed_shotgun">
+        <text>Shotgun speed Factor</text>
+    </string>
+	<string id="ui_mcm_EFT_ADS_Speed_Mulitplier_in_speed_rifle">
+        <text>Rifle speed Factor</text>
+    </string>
+	<string id="ui_mcm_EFT_ADS_Speed_Mulitplier_in_speed_sniper">
+        <text>Sniper speed Factor</text>
+    </string>
+</string_table>

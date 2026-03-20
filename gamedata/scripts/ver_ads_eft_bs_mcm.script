@@ -1,0 +1,54 @@
+function on_mcm_load()
+  op = { 
+     id = "EFT_ADS", sh = true, gr =
+      {
+        { id = "EFT_ADS_Title", type = "slide", text = "ui_mcm_menu_EFT_ADS_Title", link = "ui_options_slider_player", size = {512, 50}, spacing = 20 },
+		{ id = "Play_anim", type = "check", val = 1, def = true, },
+		{ id = "Speed_Mulitplier_in", type = "track", val = 2, def = 0.5, min = 0, max = 2, step = 0.1, },
+		{ id = "Speed_Mulitplier_in_power", type = "track", val = 2, def = 1, min = 0, max = 2, step = 0.1, },	
+		{ id = "Speed_Mulitplier_out", type = "track", val = 2, def = 0.5, min = 0, max = 2, step = 0.1, },
+		{ id = "Speed_Mulitplier_out_power", type = "track", val = 2, def = 0.4, min = 0, max = 2, step = 0.1, },
+		{ id = "Pistol_Allowed", type = "check", val = 1, def = false, },
+		{ id = "gl_anim", type = "check", val = 1, def = false, },
+		{ id = "Debug", type = "check", val = 1, def = false, },
+		{ id = "Strength_factor", type = "check", val = 1, def = false, },
+		{ id = "Strength_power_factor_factor", type = "track", val = 2, def = 3, min = 0, max = 5, step = 0.1, },
+		{ id = "Strength_speed_factor_factor", type = "track", val = 2, def = 4, min = 0, max = 5, step = 0.1, },
+		
+		{ id = "EFT_ADS_arm_health", type = "slide", text = "ui_mcm_menu_EFT_ADS_arm_health" },
+		{ id = "Arm_Health_factor", type = "check", val = 1, def = false, },
+		{ id = "Arm_Health_factor_factor", type = "track", val = 2, def = 1, min = 0, max = 2, step = 0.1, },
+		
+		{ id = "EFT_ADS_weapon_handling", type = "slide", text = "ui_mcm_menu_EFT_ADS_weapon_handling" },
+		{ id = "handling_affect", type = "check", val = 1, def = false, },
+		{ id = "handling_factor", type = "track", val = 2, def = 4, min = 0, max = 10, step = 0.1, },
+		{ id = "max_handling_factor", type = "track", val = 2, def = 0, min = 0, max = 1, step = 0.05, },
+		{ id = "handling_exponent", type = "track", val = 2, def = 7, min = 0, max = 10, step = 1, },
+		{ id = "handling_offset", type = "track", val = 2, def = 0.4, min = 0, max = 1, step = 0.1, },
+		
+		{ id = "EFT_ADS_weapon_weight", type = "slide", text = "ui_mcm_menu_EFT_ADS_weapon_weight" },
+		{ id = "weight_affect", type = "check", val = 1, def = false, },
+		{ id = "weight_threshold", type = "track", val = 2, def = 4, min = 0, max = 10, step = 0.5, },	
+		{ id = "weight_factor", type = "track", val = 2, def = 1, min = 0, max = 2, step = 0.1, },	
+		
+		{ id = "EFT_ADS_weapon_mod", type = "slide", text = "ui_mcm_menu_EFT_ADS_weapon_mod" },
+		{ id = "Speed_Mulitplier_in_power_pistol", type = "track", val = 2, def = 1, min = 0, max = 2, step = 0.1, },	
+		{ id = "Speed_Mulitplier_in_power_smg", type = "track", val = 2, def = 1, min = 0, max = 2, step = 0.1, },	
+		{ id = "Speed_Mulitplier_in_power_shotgun", type = "track", val = 2, def = 1, min = 0, max = 2, step = 0.1, },	
+		{ id = "Speed_Mulitplier_in_power_rifle", type = "track", val = 2, def = 1, min = 0, max = 2, step = 0.1, },	
+		{ id = "Speed_Mulitplier_in_power_sniper", type = "track", val = 2, def = 1, min = 0, max = 2, step = 0.1, },
+		
+		{ id = "EFT_ADS_weapon_speed", type = "slide", text = "ui_mcm_menu_EFT_ADS_weapon_speed" },
+		{ id = "Speed_Mulitplier_in_speed_pistol", type = "track", val = 2, def = 1, min = 0, max = 2, step = 0.1, },	
+		{ id = "Speed_Mulitplier_in_speed_smg", type = "track", val = 2, def = 1, min = 0, max = 2, step = 0.1, },	
+		{ id = "Speed_Mulitplier_in_speed_shotgun", type = "track", val = 2, def = 1, min = 0, max = 2, step = 0.1, },	
+		{ id = "Speed_Mulitplier_in_speed_rifle", type = "track", val = 2, def = 1, min = 0, max = 2, step = 0.1, },	
+		{ id = "Speed_Mulitplier_in_speed_sniper", type = "track", val = 2, def = 1, min = 0, max = 2, step = 0.1, },	
+		
+		{ id = "EFT_ADS_anim_on_sprint", type = "slide", text = "ui_mcm_menu_EFT_ADS_anim_on_sprint" },
+		{ id = "anim_on_sprint", type = "check", val = 1, def = false, },
+		{ id = "anim_on_sprint_delay", type = "track", val = 2, def = 0.5, min = 0, max = 5, step = 0.1, },
+      }
+    }
+  return op
+end
