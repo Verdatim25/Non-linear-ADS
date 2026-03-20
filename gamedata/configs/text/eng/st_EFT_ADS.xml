@@ -15,6 +15,12 @@
 	<string id="ui_mcm_menu_EFT_ADS_anim_on_sprint">
         <text>Anim play only on sprint</text>
     </string>
+	<string id="ui_mcm_menu_EFT_ADS_weapon_mod_title">
+        <text>Weapon Class Specific Adjustments</text>
+    </string>
+	<string id="ui_mcm_menu_EFT_ADS_max_min">
+        <text>Speed And Power Maximum And Minimums</text>
+    </string>
 	
 	<string id="ui_mcm_EFT_ADS_anim_on_sprint">
         <text>Enable Animation Only On Sprint</text>
@@ -77,6 +83,32 @@
 	<string id="ui_mcm_EFT_ADS_Speed_Mulitplier_in_desc">
         <text>Speed mulitplier on the extra ADS in animation, lower means slower, higher means faster</text>
     </string>
+	<string id="ui_mcm_EFT_ADS_min_speed">
+        <text>Minimum Animation Speed</text>
+    </string>
+	<string id="ui_mcm_EFT_ADS_min_speed_desc">
+        <text>Sets the minimum speed of the anim which the speed will be clamped to if its lower. Lower is worse, higher is better. Set to 0.9 to prevent overly sluggish anims.</text>
+    </string>
+	<string id="ui_mcm_EFT_ADS_max_speed">
+        <text>Maximum Animation Speed</text>
+    </string>
+	<string id="ui_mcm_EFT_ADS_min_speed_desc">
+        <text>Sets the maximum speed of the anim which the speed will be clamped to if its higher. Lower is worse, higher is better.</text>
+    </string>
+	
+	<string id="ui_mcm_EFT_ADS_min_power">
+        <text>Minimum Animation power</text>
+    </string>
+	<string id="ui_mcm_EFT_ADS_min_power_desc">
+        <text>Sets the minimum power of the anim which the power will be clamped to if its lower. Higher is worse, lower is better.</text>
+    </string>
+	<string id="ui_mcm_EFT_ADS_max_power">
+        <text>Maximum Animation power</text>
+    </string>
+	<string id="ui_mcm_EFT_ADS_max_power_desc">
+        <text>Sets the minimum power of the anim which the power will be clamped to if its higher. Higher is worse, lower is better.</text>
+    </string>
+	
 	<string id="ui_mcm_EFT_ADS_Speed_Mulitplier_in_power">
         <text>Power multiplier ADS</text>
     </string>
@@ -111,11 +143,25 @@
     </string>
 	
 	<string id="ui_mcm_EFT_ADS_Pistol_Allowed">
-        <text>Play Animation For Pistol</text>
+        <text>Enable Animation For Pistol</text>
     </string>
 	<string id="ui_mcm_EFT_ADS_Pistol_Allowed_desc">
         <text>Decides whether the animation will play on pistols</text>
     </string>
+	
+	<string id="ui_mcm_EFT_ADS_alt_aim_allowed">
+        <text>Enable Animation For Alt Aim</text>
+    </string>
+	<string id="ui_mcm_EFT_ADS_alt_aim_cheese_delay">
+        <text>Alt Aim Cheese Delay</text>
+    </string>
+		<string id="ui_mcm_EFT_ADS_alt_aim_cheese_delay_desc">
+        <text>Configures the delay from which the anim will not play when you swap from alt aim to main. Set to 0.2 to prevent skipping the animation by going from alt aim to main aim quickly. Does not do anything if alt aim anim is set to true.</text>
+    </string>
+	<string id="ui_mcm_EFT_ADS_Pistol_Allowed_desc">
+        <text>Decides whether the animation will play during alt aim</text>
+    </string>
+	
 	<string id="ui_mcm_EFT_ADS_Strength_factor">
         <text>Strength Skill affects power of anim</text>
     </string>
@@ -177,5 +223,17 @@
     </string>
 	<string id="ui_mcm_EFT_ADS_Speed_Mulitplier_in_speed_sniper">
         <text>Sniper speed Factor</text>
+    </string>
+	<string id="ui_mcm_EFT_ADS_Speed_Mulitplier_in_power_lmg">
+        <text>LMG power Factor</text>
+    </string>
+	<string id="ui_mcm_EFT_ADS_Speed_Mulitplier_in_speed_lmg">
+        <text>LMG speed Factor</text>
+    </string>
+	<string id="ui_mcm_EFT_ADS_lmg_separation">
+        <text>Separate LMGs from Rifles</text>
+    </string>
+	<string id="ui_mcm_EFT_ADS_lmg_separation_desc">
+        <text>Separates the LMGs from Rifles in the code. If this is turned off, LMGs will follow rifle speed and power multipliers below.</text>
     </string>
 </string_table>
