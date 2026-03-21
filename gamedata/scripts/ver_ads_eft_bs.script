@@ -84,10 +84,16 @@ local lmg_section_names = {
 	"wpn_rpk16",
 	"wpn_rpk74",
 	"wpn_rpk74_16_drum",
+	"wpn_pk_siber",
+	"wpn_pkm",
 	"wpn_pkm_siber",
 	"wpn_pkp_siber",
+	"wpn_pkm_zulus",
 	"wpn_pkm_zenit_glutton",
+	"wpn_pkm_zenit_shorty",
 	"wpn_pkm_zenit_siber",
+	"wpn_pkp"
+	"wpn_pkp_tac_siber"
 	"wpn_pkp_zenit_siber"
 }
 local mcm_lmg_separation = true
