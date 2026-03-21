@@ -70,6 +70,7 @@ local mcm_alt_aim_allowed = false
 local lmg_section_names = {
 	"wpn_dp27",
 	"wpn_dp28",
+	"wpn_hk21",
 	"wpn_m134",
 	"wpn_m240",
 	"wpn_m249",
@@ -77,11 +78,15 @@ local lmg_section_names = {
 	"wpn_mg42",
 	"wpn_mk48",
 	"wpn_rpd",
+	"wpn_rpd_custom",
+	"wpn_rpk",
 	"wpn_rpk_drum",
 	"wpn_rpk16",
+	"wpn_rpk74",
 	"wpn_rpk74_16_drum",
 	"wpn_pkm_siber",
 	"wpn_pkp_siber",
+	"wpn_pkm_zenit_glutton",
 	"wpn_pkm_zenit_siber",
 	"wpn_pkp_zenit_siber"
 }
