@@ -4,6 +4,9 @@ function on_mcm_load()
       {
         { id = "EFT_ADS_Title", type = "slide", text = "ui_mcm_menu_EFT_ADS_Title", link = "ui_options_slider_player", size = {512, 50}, spacing = 20 },
 		{ id = "Play_anim", type = "check", val = 1, def = true, },
+		
+		{ id = "anim_variants", type = "list", val = 2, content = { {0, "def"} , {1, "no_movement"} , {2, "extreme"} , {3, "lizard"} }, def = 0, },
+		
 		{ id = "Speed_Mulitplier_in", type = "track", val = 2, def = 0.5, min = 0, max = 2, step = 0.1, },
 		{ id = "Speed_Mulitplier_in_power", type = "track", val = 2, def = 1, min = 0, max = 2, step = 0.1, },	
 		{ id = "Speed_Mulitplier_out", type = "track", val = 2, def = 0.5, min = 0, max = 2, step = 0.1, },
@@ -60,6 +63,11 @@ function on_mcm_load()
 		{ id = "EFT_ADS_anim_on_sprint", type = "slide", text = "ui_mcm_menu_EFT_ADS_anim_on_sprint" },
 		{ id = "anim_on_sprint", type = "check", val = 1, def = false, },
 		{ id = "anim_on_sprint_delay", type = "track", val = 2, def = 0.5, min = 0, max = 5, step = 0.1, },
+		
+		{ id = "EFT_ADS_aim_anim_consideration", type = "slide", text = "ui_mcm_menu_EFT_ADS_aim_anim" },
+		{ id = "aim_anim_out", type = "check", val = 1, def = false, },
+		{ id = "aim_anim", type = "check", val = 1, def = false, },
+		{ id = "aim_anim_speed", type = "track", val = 2, def = 2, min = 0, max = 5, step = 0.1, },
       }
     }
   return op

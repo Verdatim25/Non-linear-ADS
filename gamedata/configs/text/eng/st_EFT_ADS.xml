@@ -25,6 +25,26 @@
 	<string id="ui_mcm_EFT_ADS_anim_on_sprint">
         <text>Enable Animation Only On Sprint</text>
     </string>
+	
+	<string id="ui_mcm_menu_EFT_ADS_aim_anim">
+        <text>Make Anim Length Consider Aim Anims</text>
+    </string>
+	
+	<string id="ui_mcm_EFT_ADS_aim_anim_out">
+        <text>Disable Out Anim if aim anim exists</text>
+    </string>
+	
+	<string id="ui_mcm_EFT_ADS_aim_anim_out_desc">
+        <text>Sometimes the resulting motion from un-adsing with both animations may look bad. For example on the SVDS Retribution, where it has a weird jitter. Turning this on will disable the animation if an aim_anim_out exists</text>
+    </string>
+	
+	<string id="ui_mcm_EFT_ADS_aim_anim">
+	    <text>Enable Anim Length based on aim anims</text>
+	</string>
+	<string id="ui_mcm_EFT_ADS_aim_anim_speed">
+	    <text>Speed Factor for aim anim factor</text>
+	</string>
+		
 	<string id="ui_mcm_EFT_ADS_anim_on_sprint_delay">
         <text>Disable Anim Delay After Sprint</text>
     </string>
@@ -236,4 +256,29 @@
 	<string id="ui_mcm_EFT_ADS_lmg_separation_desc">
         <text>Separates the LMGs from Rifles in the code. If this is turned off, LMGs will follow rifle speed and power multipliers below.</text>
     </string>
+	
+	<string id="ui_mcm_EFT_ADS_anim_variants">
+        <text>Animation Variants</text>
+    </string>
+	
+	<string id="ui_mcm_EFT_ADS_anim_variants_desc">
+        <text>Animation Variants; does not effect broken arm anims!</text>
+    </string>
+	
+	<string id="EFT_ADS_anim_variants_lst_def">
+        <text>Default animation</text>
+    </string>
+	
+	<string id="EFT_ADS_anim_variants_lst_no_movement">
+        <text>No Crosshair Movement</text>
+    </string>
+	
+	<string id="EFT_ADS_anim_variants_lst_extreme">
+        <text>Intensified animation</text>
+    </string>
+	
+	<string id="EFT_ADS_anim_variants_lst_lizard">
+        <text>Lizzardman's animation</text>
+    </string>
+	
 </string_table>
